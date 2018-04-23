@@ -2,7 +2,7 @@ import React from 'react';
 // TODO Implement more dynamic classes
 // import classnames from 'classnames';
 import journalists from './data';
-import { Button, ButtonGroup, Col, Image, Label, Modal, Panel, ResponsiveEmbed, Row } from 'react-bootstrap';
+import { Button, ButtonGroup, Col, Image, Label, Modal, Panel, Row } from 'react-bootstrap';
 
 
 let journalistsToDisplay = journalists;
