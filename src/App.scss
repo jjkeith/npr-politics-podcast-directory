@@ -37,6 +37,10 @@ p {
   display: flex;
   align-items: start;
   justify-content: space-around;
+  @media ( min-width: 1200px ) {
+    padding-bottom: 24px;
+    padding-top: 24px;
+  }
 }
 
   .jumbotron-logo {
@@ -79,7 +83,7 @@ p {
   }
 }
   .img-wrapper {
-    margin: 0 auto;
+    margin: 1rem auto 0;
     overflow: hidden;
     position: relative;
     height: 30rem;
