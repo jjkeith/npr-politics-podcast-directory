@@ -9,10 +9,9 @@ The NPR Politics Podcast provides a relatively small dataset that could be sorte
 * Create-React-App
 * React-Bootstrap
 * Sass
+* React-FontAwesome
 
 ## Known Issues/TODO
-* Currently sorting by beat is allowed, but beats are not displayed (unless decipherable from job title)
-* Twitter handles have been collected, but not worked into the view
 * The use of `dangerouslySetInnerHTML` is &mdash; obviously &mdash; discouraged, but given that this is static data that I collected myself, the risks are few. However, it would be preferable to strip links from bios and replace paragraph breaks with unicode.
 * Styling adheres to Bootstrap defaults for the most part and could be spruced up
 * Additional explanatory text would be helpful.

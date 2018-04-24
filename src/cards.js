@@ -1,6 +1,8 @@
 import React from 'react';
 // TODO Implement more dynamic classes
 // import classnames from 'classnames';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faTwitter } from '@fortawesome/fontawesome-free-brands';
 import journalists from './data';
 import { Button, ButtonGroup, Col, Image, Label, Modal, Panel, Row } from 'react-bootstrap';
 
@@ -13,7 +15,6 @@ class Cards extends React.Component {
     
     this.handleShowModal = this.handleShowModal.bind( this );
     this.handleCloseModal = this.handleCloseModal.bind( this );
-    // this.renderCard = this.renderCard.bind( this );
 
     this.state = {
       showModal: false,
@@ -60,6 +61,8 @@ class Cards extends React.Component {
   }
 
   renderCard( journalist, index ) {
+
+
     return (
       <Col  xs={ 12 } sm={ 6 } lg={ 3 } key={ index }>
         <Panel>
@@ -70,11 +73,14 @@ class Cards extends React.Component {
             <h4 className="panel-title">{ journalist.firstName } {journalist.lastName }</h4>
             <p className="text-muted mb0">{ journalist.title }</p>
               { journalist.host && ( <Label bsStyle="success">Host</Label> )}
+              { journalist.beat !== "" && ( <Label bsStyle="warning">{ journalist.beat }</Label> )}
               { !journalist.current && ( <Label>No longer on podcast</Label> )}
-
           </Panel.Body>
           <Panel.Footer className="button-wrapper">
-            <Button className="modal-trigger" onClick={ () => this.handleShowModal( journalist )}>See Bio</Button>
+            <Button bsStyle="primary" className="modal-trigger" onClick={ () => this.handleShowModal( journalist )}>See Bio</Button>
+            <a href={ `https://twitter.com/${ journalist.twitterHandle }`} className="btn mod-twitter">
+              <FontAwesomeIcon icon={ faTwitter } size="lg" />
+            </a>
           </Panel.Footer>
         </Panel>
       </Col>
@@ -88,14 +94,14 @@ class Cards extends React.Component {
           <Modal.Title>{ currentJournalist.firstName } { currentJournalist.lastName }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="img-wrapper">
-            <Image className="panel-image" src={ currentJournalist.headShot } alt="" />
+          <div className="img-wrapper mod-modal">
+            <Image className="img" src={ currentJournalist.headShot } alt="" />
           </div>
           {/* TODO Can avoid using dangerouslySetInnerHTML by stripping out links and adding unicode paragraph breaks*/}
           <div dangerouslySetInnerHTML={{ __html: currentJournalist.bio }} />
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle="primary" onClick={ this.state.handleCloseModal }>Close</Button>
+          <Button bsStyle="primary" onClick={ this.handleCloseModal }>Close</Button>
         </Modal.Footer>
       </Modal>
     );
@@ -122,7 +128,7 @@ class Cards extends React.Component {
             <Button bsStyle="primary" className="mod-sort" onClick={ () => this.handleSort( 'name' ) }>
               Name
             </Button>
-            <Button bsStyle="primary" className="mod-sort" onClick={ () => this.handleSort( 'Beat' ) }>
+            <Button bsStyle="primary" className="mod-sort" onClick={ () => this.handleSort( 'beat' ) }>
               Beat
             </Button>
           </ButtonGroup>

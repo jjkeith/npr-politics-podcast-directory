@@ -1,6 +1,7 @@
 $primary-color: #265888;
 $background-color: #fff;
 $body-text-color: #333;
+$twitter-color: #1DA1F2;
 
 
 @mixin m-absolute-positioner( $top: null, $right: null, $bottom: null, $left: null) {
@@ -13,30 +14,44 @@ $body-text-color: #333;
 
 body {
   background-color: $background-color;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
 }
 
-.container-fluid .jumbotron {
-  background-color: transparent;
-  border-bottom: 2px solid silver;
-  border-radius: 0;
-  padding-top: 60px;
+// Control Font Weights
+p {
+  font-weight: 300;
 }
 
-.jumbotron-logo {
-  @include m-absolute-positioner( 1rem, null, null, 1rem );
-  max-width: 20rem;
-  @media (min-width: 768px) {
-    @include m-absolute-positioner( 1rem, null, null, 60px );
-  }
-  @media ( min-width: 992px ) {
-    float: right;
-    position: relative;
-    max-width: 20%;
-  }
+.label {
+  font-weight: 400;
 }
+
+// Edit Jumbotron Defaults
+
+.jumbotron {
+  background-color: transparent;
+  border-bottom: 2px solid silver;
+  border-radius: 0 !important;
+  display: flex;
+  align-items: start;
+  justify-content: space-around;
+}
+
+  .jumbotron-logo {
+    margin: 20px;
+    @media (min-width: 768px) {
+      margin: 32px;
+      width: 20%;
+    }
+    @media ( min-width: 1200px ) {
+      width: 15%;
+    }
+  }
+
+
+//  Customize Sort and Filter Buttons
 
 .sort-options {
   margin-top: 2rem;
@@ -70,18 +85,28 @@ body {
     height: 30rem;
   }
 
+    .img-wrapper.mod-modal {
+      height: 40rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
     .img {
       height: 100%
     }
 
   .info-wrapper {
-      height: 6rem;
+      height: 7rem;
       @media ( min-width: 992px ) {
-        height: 8rem;
+        height: 9rem;
       }
     }
 
-    .panel-title {
+    .label:nth-of-type( 2n ) {
+      margin: 0 0.5rem;
+    }
+
+.panel-title {
       font-size: 1.25em;
       font-weight: bolder;
     }
@@ -91,9 +116,17 @@ body {
     border: none;
   }
 
-  .label:nth-last-of-type( 2 ) {
-    margin: 0 0.5rem;
-  }
+    .btn.mod-twitter {
+      background-image: linear-gradient(to bottom, lighten( $twitter-color, 12.5% ) 0%, $twitter-color 100%);
+      color: $background-color;
+      margin-left: 0.75rem;
+      &:hover {
+        background-color: $twitter-color;
+        background-image: linear-gradient(to bottom, $twitter-color 0%, $twitter-color 100%);
+      }
+    }
+
+
 
 // Bootstrap utility class not included in this build
 .sticky-top {
